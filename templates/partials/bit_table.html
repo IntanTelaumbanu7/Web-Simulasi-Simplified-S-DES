@@ -1,0 +1,23 @@
+<div class="reference-table-card">
+    <h4>{{ table.title }}</h4>
+    <div class="table-scroll">
+        <table class="bit-table">
+            <thead>
+                <tr>
+                    <th>Bit #</th>
+                    {% for h in table.headers %}<th>{{ h }}</th>{% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table.rows %}
+                <tr>
+                    <td class="row-label">{{ row.label }}</td>
+                    {% for bit in row.bits %}<td>{{ bit }}</td>{% endfor %}
+                    {% for _ in range(table.headers|length - row.bits|length) %}<td class="empty-cell">–</td>{% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if table.note %}<p class="table-note">{{ table.note }}</p>{% endif %}
+</div>

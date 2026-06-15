@@ -1,0 +1,42 @@
+<details open class="step-section">
+    <summary>{% if round == result.round1 %}D. Round Function 1{% else %}F. Round Function 2{% endif %} menggunakan {{ round.key_name }}</summary>
+
+    <div class="formula-card">
+        <strong>Rumus:</strong>
+        <span>f<sub>K</sub>(L, R) = (L ⊕ F(R, {{ round.key_name }}), R)</span>
+    </div>
+
+    {% set table = round.function.function_table %}
+    {% include 'partials/bit_table.html' %}
+
+    <div class="sbox-explain-grid">
+        <div class="calc-box">
+            <h4>Detail S-Box S0</h4>
+            <p>Input S0 = {{ round.function.sbox0_input }}</p>
+            <p>Baris = bit ke-1 dan ke-4 = {{ round.function.sbox0_input[0] }}{{ round.function.sbox0_input[3] }} = {{ round.function.sbox0_row }}</p>
+            <p>Kolom = bit ke-2 dan ke-3 = {{ round.function.sbox0_input[1] }}{{ round.function.sbox0_input[2] }} = {{ round.function.sbox0_col }}</p>
+            <p>Output S0 = {{ round.function.sbox0_output }}</p>
+        </div>
+        <div class="calc-box">
+            <h4>Detail S-Box S1</h4>
+            <p>Input S1 = {{ round.function.sbox1_input }}</p>
+            <p>Baris = bit ke-1 dan ke-4 = {{ round.function.sbox1_input[0] }}{{ round.function.sbox1_input[3] }} = {{ round.function.sbox1_row }}</p>
+            <p>Kolom = bit ke-2 dan ke-3 = {{ round.function.sbox1_input[1] }}{{ round.function.sbox1_input[2] }} = {{ round.function.sbox1_col }}</p>
+            <p>Output S1 = {{ round.function.sbox1_output }}</p>
+        </div>
+    </div>
+
+    {% set table = round.xor_table %}
+    {% include 'partials/bit_table.html' %}
+
+    <div class="calc-box success-box">
+        <p><strong>Hasil {{ round.title }}:</strong></p>
+        <p>L = {{ round.left_output }} | R = {{ round.right_output }}</p>
+        {% if round == result.round1 %}
+            <p>Gabungan sebelum swap = {{ round.combined_before_swap }}</p>
+        {% else %}
+            <p>L2 || R2 = {{ round.combined }}</p>
+            <p class="note">Tidak ada swap setelah Round 2.</p>
+        {% endif %}
+    </div>
+</details>

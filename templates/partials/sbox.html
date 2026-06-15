@@ -1,0 +1,20 @@
+<div class="sbox-wrap">
+    <div class="sbox-card">
+        <h4>S-Box S0</h4>
+        <table>
+            <thead><tr><th></th><th>0</th><th>1</th><th>2</th><th>3</th></tr></thead>
+            <tbody>
+            {% for row in result.tables.S0 %}<tr><th>{{ loop.index0 }}</th>{% for col in row %}<td>{{ col }}</td>{% endfor %}</tr>{% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="sbox-card">
+        <h4>S-Box S1</h4>
+        <table>
+            <thead><tr><th></th><th>0</th><th>1</th><th>2</th><th>3</th></tr></thead>
+            <tbody>
+            {% for row in result.tables.S1 %}<tr><th>{{ loop.index0 }}</th>{% for col in row %}<td>{{ col }}</td>{% endfor %}</tr>{% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
